@@ -1,4 +1,4 @@
--- Run this script to create schema:  `psql -h localhost -U your_username -d your_database_name -a -f create_schema.sql`
+-- Run this script to create schema:  `psql -h localhost -U allenrussell -d life_manager_database -a -f schema.sql`
 
 CREATE TABLE user (
     id SERIAL PRIMARY KEY,

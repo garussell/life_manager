@@ -1,8 +1,9 @@
 require 'pg'
+require 'dotenv/load'
 
 class Database
   def initialize
-    @connection = PG.connect(dbname: 'life_manager')
+    @connection = PG.connect(dbname: ENV['DB_NAME'], user: ENV['DB_USER'], password: ENV['DB_PASSWORD'] )
   end
 
   def execute(query)

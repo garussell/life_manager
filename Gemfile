@@ -7,4 +7,4 @@ gem 'rspec'
 gem 'pry'
 gem 'nokogiri'
 gem 'pg'
-
+gem 'dotenv'
