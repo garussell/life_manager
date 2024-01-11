@@ -1,6 +1,6 @@
--- Run this script to create schema:  `psql -h localhost -U allenrussell -d life_manager_database -a -f schema.sql`
+-- Run this script to create schema:  `psql -h localhost -U allenrussell -d life_manager_db -W -a -f schema.sql` -W prompts for password
 
-CREATE TABLE user (
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE email (
     content TEXT NOT NULL,
     received_at TIMESTAMP NOT NULL,
     type VARCHAR(255) NOT NULL,
-    INDEX idx_email_user_id (user_id)
+    CONSTRAINT idx_email_user_id UNIQUE (user_id)
 );
 
 -- From Google Calendar
@@ -27,7 +27,7 @@ CREATE TABLE calendar_event (
     description VARCHAR(255) NOT NULL,
     date TIMESTAMP NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    INDEX idx_calendar_event_user_id (user_id)
+    CONSTRAINT idx_calendar_event_user_id UNIQUE (user_id)
 );
 
 -- Can include goals set by user, such as "get a job" or "vacation" or "get in shape"
@@ -38,5 +38,5 @@ CREATE TABLE goal (
     description VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     end_date TIMESTAMP NOT NULL,
-    INDEX idx_goal_user_id (user_id)
+    CONSTRAINT idx_goal_user_id UNIQUE (user_id)
 );
